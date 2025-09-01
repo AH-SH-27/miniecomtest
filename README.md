@@ -1,2 +1,0 @@
-# miniecomtest
-mini ecom test

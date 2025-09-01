@@ -9,6 +9,7 @@ import javax.crypto.SecretKey;
 
 import org.springframework.stereotype.Service;
 
+import com.example.ecomtest.entity.User;
 import com.example.ecomtest.service.JwtService;
 
 import io.jsonwebtoken.Claims;
@@ -45,6 +46,12 @@ public class JwtServiceImpl implements JwtService {
     }
 
     public String generateToken(Map<String, Object> extraClaims, UserDetails userDetails) {
+        if (userDetails instanceof User) {
+            User user = (User) userDetails;
+            extraClaims.put("role", user.getRole().name());
+            extraClaims.put("userId", user.getId().toString());
+        }
+
         long currentTimeMillis = System.currentTimeMillis();
         long expirationTime = currentTimeMillis + 1000 * 60 * 60 * 24;
 
@@ -76,7 +83,7 @@ public class JwtServiceImpl implements JwtService {
     }
 
     private SecretKey getSignInKey() {
-         return this.signingKey;
+        return this.signingKey;
     }
 
 }
