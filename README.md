@@ -103,5 +103,9 @@ npm run dev
 
 **Notes**
 All required files and .env are included in the project.
+The app has a default admin account with 
+email: test@gmail.com
+password: aA@123456789
+For quick testing
 
 For issues or feedback, feel free to reach out!
